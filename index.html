@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Antonini - Corretora de Imóveis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Andrea Antonini</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#vantagens">Vantagens</a></li>
+                <li><a href="#simulacao">Simulação</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Realize o Sonho da Casa Própria</h1>
+                <p>As melhores condições do mercado para você conquistar seu imóvel</p>
+                <button class="cta-button" onclick="scrollToForm()">Fazer Simulação</button>
+            </div>
+        </section>
+
+        <section class="features" id="vantagens">
+            <div class="feature-card">
+                <i class="fas fa-search-dollar"></i>
+                <h3>Fácil Consulta a Financiamento</h3>
+                <p>Simulação rápida e sem burocracia</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Atendimento Personalizado</h3>
+                <p>Suporte completo na sua jornada</p>
+            </div>
+        </section>
+
+        <section class="simulation" id="simulacao">
+            <h2>Faça sua Simulação</h2>
+            <form class="simulation-form" id="leadForm" onsubmit="sendToWhatsApp(event)">
+                <input type="text" name="nome" placeholder="Nome completo" required>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <input type="tel" name="telefone" placeholder="Telefone com DDD" required>
+                <input type="date" name="nascimento" placeholder="Data de Nascimento" required>
+                <input type="number" name="renda" placeholder="Renda mensal" required>
+                <input type="number" name="fgts" placeholder="Valor disponível no FGTS" required>
+                <button type="submit">Enviar Simulação</button>
+            </form>
+        </section>
+
+        <section class="contact" id="contato">
+            <h2>Entre em Contato</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <p>(11) 99999-9999</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contato@andreaantonini.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@andreaantonini.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Andrea Antonini - Corretora de Imóveis. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function scrollToForm() {
+            document.getElementById('simulacao').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('leadForm');
+            const formData = new FormData(form);
+            
+            // Número do WhatsApp do corretor (substitua pelo número correto)
+            const whatsappNumber = '5511999999999';
+            
+            // Monta a mensagem com os dados do formulário
+            let message = '🚨 *NOVO LEAD - Andrea Antonini* 🚨\n\n';
+            message += `*Nome:* ${formData.get('nome')}\n`;
+            message += `*Email:* ${formData.get('email')}\n`;
+            message += `*Telefone:* ${formData.get('telefone')}\n`;
+            message += `*Data de Nascimento:* ${formData.get('nascimento')}\n`;
+            message += `*Renda Mensal:* R$ ${formData.get('renda')}\n`;
+            message += `*FGTS Disponível:* R$ ${formData.get('fgts')}\n`;
+            
+            // Codifica a mensagem para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Cria o link do WhatsApp
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Abre o WhatsApp em uma nova aba
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpa o formulário
+            form.reset();
+        }
+    </script>
+</body>
+</html> 
