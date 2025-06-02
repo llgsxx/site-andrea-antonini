@@ -110,6 +110,10 @@
             const form = document.getElementById('leadForm');
             const formData = new FormData(form);
             
+            // Formata a data de YYYY-MM-DD para DDMMAAAA
+            const dataOriginal = formData.get('nascimento');
+            const dataFormatada = dataOriginal.split('-').reverse().join('');
+            
             // Número do WhatsApp do corretor (substitua pelo número correto)
             const whatsappNumber = '5511965390623';
             
@@ -118,7 +122,7 @@
             message += `*Nome:* ${formData.get('nome')}\n`;
             message += `*Email:* ${formData.get('email')}\n`;
             message += `*Telefone:* ${formData.get('telefone')}\n`;
-            message += `*Data de Nascimento:* ${formData.get('nascimento')}\n`;
+            message += `*Data de Nascimento:* ${dataFormatada}\n`;
             message += `*Renda Mensal:* R$ ${formData.get('renda')}\n`;
             message += `*FGTS Disponível:* R$ ${formData.get('fgts')}\n`;
             
